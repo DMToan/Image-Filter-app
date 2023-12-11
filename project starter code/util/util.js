@@ -38,3 +38,8 @@ import Jimp from "jimp";
     fs.unlinkSync(file);
   }
 }
+
+export function validateImageUrl(url) {
+  if (typeof url !== 'string') return false;
+  return (url.match(/^(http|https):\/\/.*\.(jpg|jpeg|png|gif)$/) != null);
+}
