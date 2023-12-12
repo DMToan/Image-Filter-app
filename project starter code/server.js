@@ -18,7 +18,7 @@ import {filterImageFromURL, deleteLocalFiles, validateImageUrl} from './util/uti
   // endpoint to filter an image from a public url.
   // IT SHOULD
   //    1
-  //    1. validate the image_url query
+  //    1. DONE - validate the image_url query
   //    2. call filterImageFromURL(image_url) to filter the image
   //    3. send the resulting file in the response
   //    4. deletes any files on the server on finish of the response
@@ -35,6 +35,9 @@ import {filterImageFromURL, deleteLocalFiles, validateImageUrl} from './util/uti
   app.get( "/filteredimage", async (req, res) => {
     const image_url = req.query.image_url;
     const isImageURL = validateImageUrl(image_url);
+    if(isImageURL) {
+      await filterImageFromURL(image_url)
+    }
     return res.json({
       message: 'my app',
       image_url: image_url,

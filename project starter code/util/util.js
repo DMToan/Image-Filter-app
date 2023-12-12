@@ -41,5 +41,5 @@ import Jimp from "jimp";
 
 export function validateImageUrl(url) {
   if (typeof url !== 'string') return false;
-  return (url.match(/^(http|https):\/\/.*\.(jpg|jpeg|png|gif)$/) != null);
+  return (url.match(/^(http|https):\/\/.*\.(jpg|jpeg|png|gif).*$/) != null);
 }
