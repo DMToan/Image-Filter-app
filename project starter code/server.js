@@ -35,14 +35,11 @@ import {filterImageFromURL, deleteLocalFiles, validateImageUrl} from './util/uti
   app.get( "/filteredimage", async (req, res) => {
     const image_url = req.query.image_url;
     const isImageURL = validateImageUrl(image_url);
+    let localImagePath;
     if(isImageURL) {
-      await filterImageFromURL(image_url)
+      localImagePath = await filterImageFromURL(image_url);
     }
-    return res.json({
-      message: 'my app',
-      image_url: image_url,
-      is_image_URL: isImageURL
-    });
+    res.sendFile(localImagePath);
   } );
   // Displays a simple message to the user
   app.get( "/", async (req, res) => {

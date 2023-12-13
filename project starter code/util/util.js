@@ -14,7 +14,7 @@ import Jimp from "jimp";
     try {
       const photo = await Jimp.read(inputURL);
       const outpath =
-        "./tmp/filtered." + Math.floor(Math.random() * 2000) + ".jpg";
+        "/tmp/filtered." + Math.floor(Math.random() * 2000) + ".jpg";
       await photo
         .resize(256, 256) // resize
         .quality(60) // set JPEG quality
@@ -22,6 +22,7 @@ import Jimp from "jimp";
         .write(outpath, (img) => {
           resolve(outpath);
         });
+      return outpath;
     } catch (error) {
       reject(error);
     }
