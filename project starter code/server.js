@@ -40,6 +40,8 @@ import {filterImageFromURL, deleteLocalFiles, validateImageUrl} from './util/uti
       localImagePath = await filterImageFromURL(image_url);
     }
     res.sendFile(localImagePath);
+
+    await deleteLocalFiles([localImagePath]);
   } );
   // Displays a simple message to the user
   app.get( "/", async (req, res) => {
